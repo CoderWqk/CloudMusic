@@ -1,17 +1,17 @@
 <template>
   <div class="tab-content">
     <Recommend v-if="tabIndex == 0" />
-    <News v-if="tabIndex == 1" />
+    <hot-song v-if="tabIndex == 1" />
   </div>
 </template>
 
 <script>
 import Recommend from './Recommend.vue';
-import News from './News.vue';
+import HotSong from './HotSong.vue';
 export default {
   components: {
     Recommend,
-    News
+    HotSong
   },
   props: {
     tabIndex: {

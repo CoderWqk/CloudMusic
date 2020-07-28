@@ -18,19 +18,11 @@
 
     <Title :title="'最新音乐'" />
     <ul class="new-music" v-if="newList.length == 10">
-      <li v-for="(item, index) in newList" :key="index">
-        <a href="javascript:;">
-          <div class="item-l">
-            <p class="title">{{item.name}}</p>
-            <p class="info">
-              <span>{{item.artistsname}}</span>
-            </p>
-          </div>
-          <div class="item-r">
-            <i class="iconfont">&#xe6a2;</i>
-          </div>
-        </a>
-      </li>
+      <list-item 
+        v-for="(item, index) in newList"
+        :key="index"
+        :title="item.name"
+        :info="item.artistsname" />
     </ul>
 
     <div class="footer">
@@ -49,10 +41,12 @@
 </template>
 
 <script>
-import Title from '@/components/Title.vue';
+import Title from '../../../components/Title.vue';
+import ListItem from '../../../components/ListItem.vue';
 export default {
   components: {
     Title,
+    ListItem
   },
   data() {
     return {

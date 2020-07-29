@@ -1,4 +1,7 @@
-# cloudmusic
+# CloudMusic(移动端)
+
+## 效果截图
+![点我看效果](https://github.com/CoderWqk/githubImg/blob/master/CloudMusic/CloudMusic.png)
 
 ## Project setup
 ```

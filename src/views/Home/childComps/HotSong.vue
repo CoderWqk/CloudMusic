@@ -14,13 +14,14 @@
         :key="index"
         :title="item.name"
         :info="item.artistsname">
-        <div slot="order" class="item-l">{{index + 1}}</div>
+        <div slot="order" class="item-l" :class="{active: index < 3}">{{index + 1}}</div>
         <i class="iconfont" slot="icon-r">&#xe6a2;</i>
       </list-item>
     </ul>
+    <!-- Loading -->
+    <div class="loading" v-if="songList.length < 7"></div>
 
-
-    <div class="footer" v-show="songList.length == 20">
+    <div class="footer" v-show="songList.length == 20" @click="$router.push('/applink')">
       <span>查看完整榜单&nbsp;&gt;</span>
     </div>
 
@@ -85,6 +86,11 @@ export default {
       background-color: rgba(0, 0, 0, .3);
     }
   }
+  .song-list {
+    .active {
+      color: #DF3436;
+    }
+  }
   .footer {
     height: 110px;
     line-height: 110px;
@@ -93,6 +99,13 @@ export default {
       color: #999;
       font-size: 28px;
     }
+  }
+  .loading {
+    width: 48px;
+    height: 48px;
+    background: url('../../../assets/img/loading.gif') center center no-repeat;
+    background-size: 100%;
+    margin: 20px auto;
   }
 }
 </style>

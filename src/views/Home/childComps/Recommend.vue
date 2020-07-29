@@ -1,9 +1,9 @@
 <template>
   <div class="recommend">
-
+    <!-- 推荐歌单 -->
     <Title :title="'推荐歌单'" />
-    <ul class="recomment-list" v-if="commendList.length == 6">
-      <li class="recommend-item" v-for="(item, index) in commendList" :key="index">
+    <ul class="recomment-list" v-if="recommendList.length == 6">
+      <li class="recommend-item" v-for="(item, index) in recommendList" :key="index" @click="$router.push('/playlist')">
         <a href="javascript:;">
           <img :src="item.picurl" alt="">
           <p>{{item.artistsname}}-{{item.name}}</p>
@@ -13,9 +13,12 @@
           </div>
         </a>
       </li>
-
     </ul>
+    <!-- Loading -->
+    <div class="loading" v-if="recommendList.length != 6"></div>
 
+
+    <!-- 最新音乐 -->
     <Title :title="'最新音乐'" />
     <ul class="new-music" v-if="newList.length == 10">
       <list-item 
@@ -26,8 +29,11 @@
         <i class="iconfont" slot="icon-r">&#xe6a2;</i>
       </list-item>
     </ul>
+    <!-- Loading -->
+    <div class="loading" v-if="newList.length != 10"></div>
 
-    <div class="footer">
+
+    <div class="footer" v-if="recommendList.length == 6 && newList.length == 10" @click="$router.push('/applink')">
       <div class="logo">
         <i class="iconfont">&#xe76a;</i>
         <span>网易云音乐</span>
@@ -52,7 +58,7 @@ export default {
   },
   data() {
     return {
-      commendList: [],
+      recommendList: [],
       newList: []
     }
   },
@@ -62,10 +68,10 @@ export default {
         func();
       }
     },
-    async getCommendData() {
+    async getRecommendData() {
       // 获取 推荐歌单 的相关信息
       const res = await this.$http.get('/rand.music?sort=' + '热歌榜' + '&format=json')
-      this.commendList.push(res.data)
+      this.recommendList.push(res.data)
     },
     async getNewData() {
       // 获取 最新音乐 的相关信息
@@ -74,7 +80,7 @@ export default {
     }
   },
   created() {
-    this.getMusicList(this.getCommendData, 6);
+    this.getMusicList(this.getRecommendData, 6);
     this.getMusicList(this.getNewData, 10);
   }
 }
@@ -216,5 +222,12 @@ export default {
     }
   }
   
+   .loading {
+    width: 48px;
+    height: 48px;
+    background: url('../../../assets/img/loading.gif') center center no-repeat;
+    background-size: 100%;
+    margin: 20px auto;
+  }
 }
 </style>

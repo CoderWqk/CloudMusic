@@ -60,7 +60,6 @@ export default {
       display: flex;
       align-items: center;
       width: 8%;
-      color: #DF3436;
       font-size: 32px;
     }
     .item-m {

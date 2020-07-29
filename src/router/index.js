@@ -1,15 +1,24 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home/Home.vue'
-
+const Home = () => import('../views/Home/Home');
+const PlayList = () => import('../views/PlayList/PlayList');
+const AppLink = () => import('../views/AppLink/AppLink');
 Vue.use(VueRouter)
 
-  const routes = [
+const routes = [
   {
-    path: '/',
-    name: 'Home',
+    path: '',
+    redirect: '/home'
+  }, {
+    path: '/home',
     component: Home
-  },
+  }, {
+    path: '/playlist',
+    component: PlayList
+  }, {
+    path: '/applink',
+    component: AppLink
+  }
 ]
 
 const router = new VueRouter({

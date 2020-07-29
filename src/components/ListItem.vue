@@ -1,13 +1,17 @@
 <template>
-  <li class="list-item">
+  <li class="list-item" @click="listItemClick">
     <a href="javascript:;">
+      
       <slot name="order"></slot>
+
       <div class="item-m">
-        <p class="title">{{title}}</p>
-        <p class="info">{{info}}</p>
+        <p class="title" v-if="title">{{title}}</p>
+        <p class="info" v-if="info">{{info}}</p>
+        <slot name="content"></slot>
       </div>
+
       <div class="item-r">
-        <i class="iconfont">&#xe6a2;</i>
+        <slot name="icon-r"></slot>
       </div>
     </a>
   </li>
@@ -28,6 +32,11 @@ export default {
         return ""
       }
     }
+  },
+  methods: {
+    listItemClick() {
+      this.$emit("listItemClick")
+    }
   }
 }
 </script>
@@ -41,6 +50,12 @@ export default {
     width: 100%;
     height: 86px;
     padding: 12px 0;
+    > .record {
+      line-height: 86px;
+      color: #aaa;
+      font-size: 36px;
+      text-align: center;
+    }
     .item-l {
       display: flex;
       align-items: center;
@@ -71,6 +86,10 @@ export default {
         color: #aaa;
         font-size: 64px;
         text-align: center;
+      }
+      > .icon-r {
+        color: #aaa;
+        text-align: left;
       }
     }
   }

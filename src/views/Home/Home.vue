@@ -26,7 +26,6 @@ export default {
   methods: {
     tabItemClick(index) {
       this.tabIndex = index;
-      console.log(this.tabIndex)
     }
   }
 }

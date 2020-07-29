@@ -15,6 +15,7 @@
         :title="item.name"
         :info="item.artistsname">
         <div slot="order" class="item-l">{{index + 1}}</div>
+        <i class="iconfont" slot="icon-r">&#xe6a2;</i>
       </list-item>
     </ul>
 

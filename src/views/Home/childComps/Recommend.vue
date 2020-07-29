@@ -22,7 +22,9 @@
         v-for="(item, index) in newList"
         :key="index"
         :title="item.name"
-        :info="item.artistsname" />
+        :info="item.artistsname">
+        <i class="iconfont" slot="icon-r">&#xe6a2;</i>
+      </list-item>
     </ul>
 
     <div class="footer">

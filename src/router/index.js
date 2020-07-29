@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-const Home = () => import('../views/Home/Home');
-const PlayList = () => import('../views/PlayList/PlayList');
-const AppLink = () => import('../views/AppLink/AppLink');
+const Home = () => import('../views/Home/Home.vue');
+const PlayList = () => import('../views/PlayList/PlayList.vue');
+const AppLink = () => import('../views/AppLink/AppLink.vue');
+const Player = () => import('../views/Player/Player.vue');
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,6 +19,9 @@ const routes = [
   }, {
     path: '/applink',
     component: AppLink
+  }, {
+    path: '/player',
+    component: Player
   }
 ]
 

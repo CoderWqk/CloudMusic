@@ -25,7 +25,8 @@
         v-for="(item, index) in newList"
         :key="index"
         :title="item.name"
-        :info="item.artistsname">
+        :info="item.artistsname"
+        @listItemClick="newItemClick(index)">
         <i class="iconfont" slot="icon-r">&#xe6a2;</i>
       </list-item>
     </ul>
@@ -33,7 +34,9 @@
     <div class="loading" v-if="newList.length != 10"></div>
 
 
-    <div class="footer" v-if="recommendList.length == 6 && newList.length == 10" @click="$router.push('/applink')">
+    <div class="footer" 
+      v-if="recommendList.length == 6 && newList.length == 10" 
+      @click="$router.push('/applink')">
       <div class="logo">
         <i class="iconfont">&#xe76a;</i>
         <span>网易云音乐</span>
@@ -77,6 +80,11 @@ export default {
       // 获取 最新音乐 的相关信息
       const res = await this.$http.get('/rand.music?sort=' + '新歌榜' + '&format=json')
       this.newList.push(res.data)
+    },
+    newItemClick(index) {
+      let song = JSON.stringify(this.newList[index]);
+      sessionStorage.setItem("song", song);
+      this.$router.push('/player');
     }
   },
   created() {

@@ -17,7 +17,9 @@
     
     <!-- 搜索历史记录 -->
     <ul class="history" v-if="!inputVal">
-      <list-item v-for="(item, index) in inputHistoryList" :key="index">
+      <list-item 
+      v-for="(item, index) in inputHistoryList" 
+      :key="index">
         <i class="iconfont record" slot="order" @click="historyItemClick(index)">&#xe673;</i>
         <p class="content" slot="content" @click="historyItemClick(index)">{{item}}</p>
         <i class="iconfont icon-r" slot="icon-r" @click="closeClick(index)">&#xe65c;</i>
@@ -69,9 +71,9 @@ export default {
       this.inputVal = this.inputHistoryList[index];
     },
     async getMusicInfo() {
-      const res = await this.$http.get('https://v1.alapi.cn/api/music/search?keyword='+this.inputVal);
+      this.searchTipsList = [];
+      const res = await this.$http.get('https://v1.alapi.cn/api/music/search?keyword=' + this.inputVal);
       this.searchTipsList.push(...res.data.songs);
-      console.log(this.searchTipsList)
     }
   },
   watch: {

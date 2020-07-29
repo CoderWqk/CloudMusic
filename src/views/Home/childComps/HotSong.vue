@@ -13,7 +13,8 @@
         v-for="(item, index) in songList"
         :key="index"
         :title="item.name"
-        :info="item.artistsname">
+        :info="item.artistsname"
+        @listItemClick="hotItemClick(index)">
         <div slot="order" class="item-l" :class="{active: index < 3}">{{index + 1}}</div>
         <i class="iconfont" slot="icon-r">&#xe6a2;</i>
       </list-item>
@@ -50,6 +51,11 @@ export default {
       const res = await this.$http.get('/rand.music?sort=' + '热歌榜' + '&format=json')
       this.songList.push(res.data)
     },
+    hotItemClick(index) {
+      let song = JSON.stringify(this.songList[index]);
+      sessionStorage.setItem("song", song);
+      this.$router.push('/player')
+    }
   },
   created() {
     this.getMusicList(this.getHotSongData, 20);

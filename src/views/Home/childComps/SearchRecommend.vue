@@ -5,7 +5,7 @@
       <p slot="content" class="content search-tips">搜索“{{inputVal}}”</p>
     </list-item>
     <!-- 搜索提示 -->
-    <div v-if="searchTipsList">
+    <div v-if="searchTipsList.length >= 7">
       <list-item 
         v-for="(item, index) in searchTipsList" 
         :key="index" 
@@ -15,12 +15,15 @@
         <p slot="content" class="content search-info">{{item.name}}</p>
       </list-item>
     </div>
+    <!-- Loading -->
+    <div class="loading" v-else></div>
     <!-- 搜索内容 -->
-    <div v-if="searchList">
+    <div v-if="searchList.length == 10">
       <list-item 
         v-for="(item, index) in searchList" 
         :key="index"
-        v-show="searchList.length != 0">
+        v-show="searchList.length != 0"
+        @listItemClick="searchItemClick(index)">
         <p slot="content" class="content search-info">{{item.name}}</p>
         <i class="iconfont icon-r" slot="icon-r">&#xe6a2;</i>
       </list-item>
@@ -57,14 +60,16 @@ export default {
   methods: {
     searchTipsClick(index) {
       this.getMusicInfo(this.searchTipsList[index].name);
-      console.log(this.searchTipsList[index].name)
-      console.log('----')
+    },
+    searchItemClick(index) {
+      let song = JSON.stringify(this.searchList[index]);
+      sessionStorage.setItem("song", song);
+      this.$router.push('/player');
     },
     async getMusicInfo(songname) {
       this.searchList = [];
       const res = await this.$http.get('https://v1.alapi.cn/api/music/search?keyword=' + songname);
       this.searchList.push(...res.data.songs);
-      console.log(this.searchList)
     }
   }
 }
@@ -89,6 +94,13 @@ export default {
   }
   .icon-r {
     font-size: 42px;
+  }
+  .loading {
+    width: 48px;
+    height: 48px;
+    background: url('../../../assets/img/loading.gif') center center no-repeat;
+    background-size: 100%;
+    margin: 20px auto;
   }
 }
 </style>

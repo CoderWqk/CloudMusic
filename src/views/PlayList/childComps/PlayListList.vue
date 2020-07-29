@@ -8,7 +8,8 @@
           v-for="(item, index) in recommendList" 
           :key="index" 
           :title="item.name" 
-          :info="item.artistsname">
+          :info="item.artistsname"
+          @listItemClick="playListClick(index)">
           <div slot="order" class="item-l">{{index + 1}}</div>
           <i class="iconfont" slot="icon-r">&#xe6a2;</i>
         </list-item>
@@ -40,11 +41,15 @@ export default {
         func();
       }
     },
-    async getRecommendData() {
+    async getRecommendData(index) {
       // 获取 推荐歌单 的相关信息
-      const res = await this.$http.get('/rand.music?sort=' + '热歌榜' + '&format=json')
-      this.recommendList.push(res.data)
-      console.log(this.recommendList)
+      const res = await this.$http.get('/rand.music?sort=' + '热歌榜' + '&format=json');
+      this.recommendList.push(res.data);
+    },
+    playListClick(index) {
+      let song = JSON.stringify(this.recommendList[index]);
+      sessionStorage.setItem("song", song);
+      this.$router.push('/player');
     }
   },
   created() {

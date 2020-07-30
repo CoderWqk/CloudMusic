@@ -1,10 +1,9 @@
 # CloudMusic(移动端)
 
-## 效果截图
+## 效果截图 --- 请下载fullVersion分支下的项目文件
 ![点我看效果](https://github.com/CoderWqk/githubImg/blob/master/CloudMusic/CloudMusic.png)
 
-## 提示
-请下载fullVersion分支下的项目文件
+## 如果对您有帮助帮忙点一颗星，谢谢
 
 ## Project setup
 ```

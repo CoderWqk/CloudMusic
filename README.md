@@ -3,6 +3,9 @@
 ## 效果截图
 ![点我看效果](https://github.com/CoderWqk/githubImg/blob/master/CloudMusic/CloudMusic.png)
 
+## 提示
+请下载fullVersion分支下的项目文件
+
 ## Project setup
 ```
 npm install

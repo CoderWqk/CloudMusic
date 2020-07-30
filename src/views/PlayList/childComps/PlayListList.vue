@@ -2,7 +2,7 @@
   <div class="playlist-list">
     <!-- 歌曲列表 -->
     <div class="list">
-      <div class="title">歌曲列表</div>
+      <list-title :title="'歌曲列表'" />
       <div v-if="recommendList.length == 9">
         <list-item 
           v-for="(item, index) in recommendList" 
@@ -25,9 +25,11 @@
 </template>
 
 <script>
+import ListTitle from '../../../components/ListTitle.vue';
 import ListItem from '../../../components/ListItem.vue';
 export default {
   components: {
+    ListTitle,
     ListItem
   },
   data() {
@@ -63,14 +65,6 @@ export default {
   position: relative;
   .list {
     width: 100%;
-    .title {
-      width: 100%;
-      height: 46px;
-      line-height: 46px;
-      color: #666;
-      padding: 0 20px;
-      background-color: #eeeff0;
-    }
   }
   .more {
     position: absolute;

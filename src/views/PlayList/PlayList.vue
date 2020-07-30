@@ -3,6 +3,8 @@
     <play-list-head :currentHeadInfo="currentHeadInfo" />
     <play-list-intro :currentHeadInfo="currentHeadInfo" />
     <play-list-list />
+    <play-list-comment />
+    <play-list-footer />
   </div>
 </template>
 
@@ -10,11 +12,15 @@
 import PlayListHead from './childComps/PlayListHead.vue';
 import PlayListIntro from './childComps/PlayListIntro.vue';
 import PlayListList from './childComps/PlayListList.vue';
+import PlayListComment from './childComps/PlayListComment.vue';
+import PlayListFooter from './childComps/PlayListFooter.vue';
 export default {
   components: {
     PlayListHead,
     PlayListIntro,
-    PlayListList
+    PlayListList,
+    PlayListComment,
+    PlayListFooter
   },
   data() {
     return {
